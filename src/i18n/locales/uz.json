@@ -1,0 +1,310 @@
+{
+  "navbar": {
+    "home": "Bosh sahifa",
+    "places": "Joylar",
+    "routes": "Marshrutlar",
+    "businesses": "Bizneslar",
+    "companions": "Hamroh topish",
+    "chat": "Chat",
+    "app": "Ilova",
+    "login": "Kirish / Ro'yxatdan o'tish"
+  },
+  "hero": {
+    "title": "FARG'ONA",
+    "subtitle": "Tabiat. Tarix. Sarguzasht.",
+    "desc": "Farg'onaning betakror manzaralari, sayohat yo'nalishlari va mahalliy hayotini bir platformada kashf eting.",
+    "startJourney": "Sayohatni boshlash",
+    "explorePlaces": "Joylarni kashf etish",
+    "decorative1": "Farg'onani kashf et",
+    "decorative2": "Sayohatni his et...",
+    "scrollDown": "Pastga siljiting",
+    "categories": {
+      "nature": "Tabiat",
+      "history": "Tarix",
+      "business": "Mahalliy biznes",
+      "digital": "Raqamli turizm"
+    }
+  },
+  "companions": {
+    "title": "Hamroh qidirish",
+    "subtitle": "Farg'ona viloyati bo'ylab sayohat qilish uchun do'stlar toping",
+    "postAd": "E'lon berish",
+    "people": "kishi",
+    "message": "Xabar yozish",
+    "newAd": "Yangi e'lon",
+    "destination": "Manzil",
+    "date": "Sana",
+    "messageLabel": "Xabar",
+    "messagePlaceholder": "Qayerga, nechta odam kerak, marshrut haqida batafsil...",
+    "posting": "Joylanmoqda...",
+    "postButton": "E'lonni joylash",
+    "alertLogin": "Oldin tizimga kiring!",
+    "alertError": "Xatolik yuz berdi, iltimos qayta urinib ko'ring."
+  },
+  "messenger": {
+    "title": "Xabarlar",
+    "online": "Online",
+    "noMessages": "Hozircha xabarlar yo'q. Birinchi bo'lib yozing!",
+    "typeMessage": "Xabar yozing...",
+    "selectChat": "Suhbatni boshlash uchun chatni tanlang",
+    "alertLogin": "Xabar yuborish uchun tizimga kiring! (Tepadagi tugma orqali)",
+    "alertError": "Xatolik: Xabar yuborilmadi! Baza sozlamalarini tekshiring."
+  },
+  "discover": {
+    "title": "Farg'onani boshqacha ko'ring",
+    "desc": "Har bir joy — yangi bir hikoya. Tabiat, tarix, madaniyat va mahalliy hayot bilan tanishing.",
+    "viewAll": "Barchasini ko'rish",
+    "items": {
+      "1": {
+        "title": "Tabiat",
+        "desc": "Toza havo va betakror manzaralar"
+      },
+      "2": {
+        "title": "Tog'lar va manzaralar",
+        "desc": "Ochiq osmon ostidagi go'zallik"
+      },
+      "3": {
+        "title": "Shahar tarixi",
+        "desc": "O'tmishdan kelajak sari"
+      },
+      "4": {
+        "title": "Milliy taomlar",
+        "desc": "Mazali an'anaviy taomlar"
+      },
+      "5": {
+        "title": "Mahalliy hayot",
+        "desc": "Sodda va samimiy odamlar"
+      },
+      "6": {
+        "title": "Oilaviy dam olish",
+        "desc": "Barchangiz uchun qulay sharoit"
+      }
+    }
+  },
+  "routes": {
+    "label": "Tayyor marshrutlar",
+    "title": "Bir kunlik sayohat",
+    "desc": "Tayyor marshrutlar orqali vaqtni tejab va eng yaxshi joylarni kashf eting.",
+    "viewAll": "Barchasini ko'rish",
+    "recommended": "Tavsiya etiladi",
+    "viewRoute": "Marshrutni ko'rish"
+  },
+  "why": {
+    "title": "Nega aynan Farg'ona?",
+    "subtitle": "Farg'ona – bu shunchaki joy emas, bu unutilmas taassurotlar va yangi kashfiyotlar makoni.",
+    "items": {
+      "01": {
+        "title": "Tabiat",
+        "desc": "O'zbekistonning eng toza havoli va so'lim tabiatli maskanlaridan biri. Betakror tog' manzaralari va yashil vodiylar."
+      },
+      "02": {
+        "title": "Madaniyat",
+        "desc": "Ko'p millatli shahar bo'lib, o'zbek, tojik, qirg'iz va boshqa millatlar madaniyati uyg'unlashgan yagona nuqta."
+      },
+      "03": {
+        "title": "Mahalliy hayot",
+        "desc": "Samimiy odamlar, an'anaviy bozorlar va haqiqiy Farg'ona mehmondo'stligi."
+      },
+      "04": {
+        "title": "Yangi turizm imkoniyatlari",
+        "desc": "Rivojlanayotgan eko-turizm, agro-turizm va ekstremal sport turlari uchun ajoyib hudud."
+      },
+      "05": {
+        "title": "Raqamli turizm",
+        "desc": "Zamonaviy IT yechimlari bilan integratsiyalashgan aqlli shahar sayohati."
+      }
+    }
+  },
+  "mobile": {
+    "label": "Mobile ilova",
+    "title": "Tez kunda mobil ilovamiz chiqadi!",
+    "desc": "Saytning barcha qulayliklari endi sizning cho'ntagingizda. Farg'onani smartfoningiz orqali yanada osonroq kashf eting.",
+    "features": {
+      "0": "Barcha joylar va marshrutlar xaritasi",
+      "1": "QR kodlarni skanerlash imkoniyati",
+      "2": "Hamroh topish va chat qilish",
+      "3": "Oflayn rejimda ishlash"
+    },
+    "comingSoon": "Tez kunda"
+  },
+  "events": {
+    "label": "Kalendar",
+    "title": "Farg'onada nima bo'lyapti?",
+    "desc": "Yaqin kunlarda bo'lib o'tadigan eng qiziqarli tadbirlar, festivallar va ko'rgazmalar.",
+    "viewAll": "Barcha tadbirlar",
+    "viewDetails": "Batafsil ko'rish",
+    "galleryLabel": "Galereya",
+    "galleryTitle": "Farg'onani kamera orqali kashf eting",
+    "galleryCats": {
+      "0": "Tabiat",
+      "1": "Shahar",
+      "2": "Madaniyat",
+      "3": "Odamlar"
+    }
+  },
+  "gov": {
+    "label": "Shahar rivojlanishi",
+    "title": "Turizm — Farg'ona iqtisodiyotining yangi imkoniyati",
+    "desc": "Ushbu raqamli platforma Farg'ona shahrining turizm salohiyatini to'liq ochib berish va mahalliy iqtisodiyotni rivojlantirish uchun xizmat qiladi.",
+    "features": {
+      "0": "Turistlar oqimini oshirish",
+      "1": "Mahalliy biznesni qullab-quvvatlash",
+      "2": "Yangi ish o'rinlari yaratish",
+      "3": "Raqamli turizmni joriy etish",
+      "4": "Turizm analitikasini yig'ish",
+      "5": "Shahar brendini yaratish"
+    },
+    "btn": "Loyiha haqida batafsil",
+    "chart": {
+      "title": "Turizm o'sish ko'rsatkichi",
+      "subtitle": "Prognoz (Loyiha orqali)",
+      "q1": "1-chorak",
+      "q2": "2-chorak",
+      "q3": "3-chorak",
+      "q4": "4-chorak",
+      "nextYear": "Kelasi yil",
+      "analytics": "Analitika",
+      "transparent": "Shaffof",
+      "stats": "statistika",
+      "employment": "Aholi bandligi",
+      "newJobs": "Yangi ish",
+      "jobsPlural": "o'rinlari"
+    }
+  },
+  "footer": {
+    "slogan": "\"Farg'onani kashf et. Sayohatni his et.\"",
+    "desc": "Raqamli turizm platformasi. Farg'ona shahrining betakror tabiati, tarixi va mahalliy hayotini dunyoga tanitamiz.",
+    "discover": "Kashf etish",
+    "links": {
+      "places": "Barcha joylar",
+      "routes": "Sayohat marshrutlari",
+      "map": "Interaktiv xarita",
+      "businesses": "Mahalliy bizneslar",
+      "events": "Tadbirlar"
+    },
+    "info": "Ma'lumot",
+    "infoLinks": {
+      "about": "Loyiha haqida",
+      "contact": "Aloqa",
+      "faq": "Ko'p so'raladigan savollar",
+      "terms": "Foydalanish shartlari",
+      "privacy": "Maxfiylik siyosati"
+    },
+    "subscribe": "Yangiliklarga obuna bo'lish",
+    "subDesc": "Eng so'nggi sayohat yo'nalishlari va tadbirlardan xabardor bo'ling.",
+    "emailPlaceholder": "Email manzilingiz",
+    "rights": "Farg'ona Tourism. Barcha huquqlar himoyalangan."
+  },
+  "bizSection": {
+    "label": "Mahalliy biznes",
+    "title": "Mahalliy biznesni qo'llab-quvvatlaymiz",
+    "desc": "Sayohatingiz davomida mahalliy bizneslardan foydalaning va Farg'ona iqtisodiyotini rivojlantirishga hissa qo'shing.",
+    "viewAll": "Barchasini ko'rish",
+    "cats": {
+      "0": "Barchasi",
+      "1": "Kafe & Restoran",
+      "2": "Mehmonxona",
+      "3": "Xizmatlar",
+      "4": "Hunarmandchilik",
+      "5": "Mahsulotlar"
+    },
+    "view": "Ko'rish",
+    "route": "Yo'nalish",
+    "ctaTitle": "Biznesingizni Farg'ona Tourism'ga qo'shing",
+    "ctaDesc": "Mahalliy ekotizimning bir qismiga aylaning.",
+    "ctaBtn": "Qo'shilish"
+  },
+  "planner": {
+    "label": "Smart Trip Planner",
+    "title": "Sayohatingizni o'zingiz yarating",
+    "desc": "Sizning qiziqishlaringiz va vaqtingizga moslashtirilgan ideal marshrutni sun'iy intellekt yordamida shakllantiring.",
+    "timeQ": "Qancha vaqtingiz bor?",
+    "times": {
+      "0": "2 soat",
+      "1": "Yarim kun",
+      "2": "1 kun",
+      "3": "2 kun"
+    },
+    "typeQ": "Sayohat turi qanday?",
+    "types": {
+      "0": "Oila",
+      "1": "Do'stlar",
+      "2": "Yakka",
+      "3": "Yoshlar"
+    },
+    "interestQ": "Nimalarga qiziqasiz?",
+    "interests": {
+      "0": "Tabiat",
+      "1": "Tarix",
+      "2": "Ovqat",
+      "3": "Foto",
+      "4": "Sarguzasht",
+      "5": "Dam olish"
+    },
+    "budgetQ": "Budjetingiz qanday?",
+    "budgets": {
+      "0": "Tejamkor",
+      "1": "O'rtacha",
+      "2": "Premium"
+    },
+    "generate": "Marshrutni yaratish",
+    "back": "Orqaga",
+    "loading": "Siz uchun ideal marshrut tayyorlanmoqda...",
+    "loadingDesc": "{{time}} • {{type}} • {{interest}} qiziqishlariga asoslangan",
+    "resultBadge": "Moslashtirilgan marshrut",
+    "resultTitle": "{{interest}} va sarguzasht",
+    "resultDesc": "{{type}} uchun ideal {{time}}lik sayohat rejasi.",
+    "restart": "Boshqatdan",
+    "viewMap": "Xaritada ko'rish",
+    "save": "Saqlash",
+    "route1": {
+      "name": "Farg'ona markaziy maydoni",
+      "desc": "Sayohatni shaharning yuragidan boshlang. Ertalabki toza havo va foto uchun ajoyib joy."
+    },
+    "route2": {
+      "name": "Tarixiy obida",
+      "desc": "Mahalliy gid bilan shahar tarixi haqida qiziqarli faktlar."
+    },
+    "route3": {
+      "name": "Milliy tushlik",
+      "desc": "Tavsiya: 'Navro'z' restoranida haqiqiy Farg'ona palovi."
+    },
+    "route4": {
+      "name": "Tabiat qo'ynida",
+      "desc": "Tog' yonbag'rida piyoda sayr va go'zal manzaralar."
+    }
+  },
+  "smartMap": {
+    "label": "Interaktiv xarita",
+    "title": "Farg'onaning interaktiv xaritasi",
+    "desc": "Sayohat joylarini xaritada ko'ring va o'zingiz uchun eng qiziqarli maskanlarni tanlang.",
+    "allPlaces": "Barcha joylar",
+    "cats": {
+      "tabiat": "Tabiat",
+      "tarix": "Tarixiy joylar",
+      "dam": "Dam olish maskanlari",
+      "taom": "Milliy taomlar",
+      "mehmonxona": "Mehmonxonalar",
+      "mahsulot": "Mahalliy mahsulotlar",
+      "foto": "Foto lokatsiyalar"
+    },
+    "duration": "Davomiyligi: {{time}}",
+    "addToRoute": "Marshrutga qo'shish",
+    "loc1": {
+      "name": "Chorbog' dam olish maskani",
+      "desc": "Tabiat qo'ynidagi go'zal maskan, oilaviy dam olish uchun ideal joy."
+    },
+    "loc2": {
+      "name": "Farg'ona markaziy bog'i",
+      "desc": "Shahar markazidagi osoyishta maskan."
+    },
+    "loc3": {
+      "name": "Milliy taomlar restorani",
+      "desc": "Haqiqiy Farg'ona palovi va milliy taomlar."
+    },
+    "loc4": {
+      "name": "Tog' manzarasi",
+      "desc": "Quyosh botishini tomosha qilish uchun eng yaxshi joy."
+    }
+  }
+}
