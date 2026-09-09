@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Globe, Menu, X, LogOut } from 'lucide-react';
+import { Globe, Menu, X, LogOut, Mic } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import { AuthModal } from '../auth/AuthModal';
+import { VoiceTranslatorModal } from '../VoiceTranslatorModal';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,6 +13,7 @@ export const Navbar = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { user, logout } = useAuth();
   const { t, i18n } = useTranslation();
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'uz' ? 'ru' : 'uz';
@@ -78,6 +80,14 @@ export const Navbar = () => {
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
+          <button 
+            onClick={() => setIsVoiceModalOpen(true)}
+            className="flex items-center gap-1 text-white text-sm font-medium hover:text-emerald-300 transition-colors"
+            title="Ovozli tarjimon"
+          >
+            <Mic size={18} />
+          </button>
+          
           <button 
             onClick={toggleLanguage}
             className="flex items-center gap-1 text-white text-sm font-medium hover:text-emerald-300 transition-colors"
@@ -164,6 +174,10 @@ export const Navbar = () => {
       <AuthModal 
         isOpen={isAuthModalOpen} 
         onClose={() => setIsAuthModalOpen(false)} 
+      />
+      <VoiceTranslatorModal
+        isOpen={isVoiceModalOpen}
+        onClose={() => setIsVoiceModalOpen(false)}
       />
     </motion.header>
   );
