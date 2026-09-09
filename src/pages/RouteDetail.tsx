@@ -60,7 +60,7 @@ export const RouteDetail = () => {
 
               <h3 className="text-2xl font-bold font-heading text-emerald-900 mb-6">Reja (Soatma-soat)</h3>
               <div className="space-y-6">
-                {route.timeline?.map((item, idx) => (
+                {route.timeline?.map((item: { time: string; act: string }, idx: number) => (
                   <div key={idx} className="flex gap-4 relative">
                     {idx !== route.timeline!.length - 1 && (
                       <div className="absolute top-8 left-3 w-0.5 h-full bg-emerald-100" />

@@ -1,4 +1,4 @@
-import { CheckCircle, TrendingUp, BarChart3, Users, Landmark } from 'lucide-react';
+import { CheckCircle, TrendingUp, Landmark } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 

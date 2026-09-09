@@ -6,32 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
 
-const MOCK_POSTS = [
-  {
-    id: 1,
-    user: { name: 'Sardor', avatar: 'https://ui-avatars.com/api/?name=Sardor&background=0284c7&color=fff' },
-    destination: "Farg'ona, Chorbog'",
-    date: '15.06.2026',
-    text: 'Ertaga Chorbog\'ga ketyapman, mashinada 2 ta bo\'sh joy bor. Tabiatga qiziqadiganlar bo\'lsa yozing!',
-    participants: 1
-  },
-  {
-    id: 2,
-    user: { name: 'Malika', avatar: 'https://ui-avatars.com/api/?name=Malika&background=db2777&color=fff' },
-    destination: 'Qo\'qon, Xudoyorxon O\'rdasi',
-    date: '20.06.2026',
-    text: 'Dam olish kunlari Qo\'qon tarixiy joylarini aylanmoqchiman. Men bilan chiqadigan qizlar bormi?',
-    participants: 2
-  },
-  {
-    id: 3,
-    user: { name: 'Javohir', avatar: 'https://ui-avatars.com/api/?name=Javohir&background=ea580c&color=fff' },
-    destination: 'Marg\'ilon, Yodgorlik fabrikasi',
-    date: '25.06.2026',
-    text: 'Ipakchilik fabrikasiga sayohat qilmoqchimiz. Biz 3 kishimiz, yana 2 kishi qo\'shilsa guruh bo\'lib borardik.',
-    participants: 3
-  }
-];
+
 
 const DESTINATIONS = [
   "Farg'ona (Tog', Tabiat)",

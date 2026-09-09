@@ -61,8 +61,7 @@ const mockLocations = [
 ];
 
 export const SmartMapSection = () => {
-  const { t, i18n } = useTranslation();
-  const lang = (i18n.language as 'uz' | 'ru') || 'uz';
+  const { t } = useTranslation();
   
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeLocation, setActiveLocation] = useState<number | null>(1); // default to first one for demo

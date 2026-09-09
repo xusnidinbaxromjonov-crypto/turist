@@ -65,7 +65,7 @@ export const RoutesSection = () => {
                   <div className="w-1 h-1 rounded-full bg-emerald-100/50" />
                   <div className="flex items-center gap-1.5">
                     <Navigation size={16} />
-                    <span>{featuredRoute.distance[lang]}</span>
+                    <span>{featuredRoute.distance?.[lang]}</span>
                   </div>
                   <div className="w-1 h-1 rounded-full bg-emerald-100/50" />
                   <div className="flex items-center gap-1.5">

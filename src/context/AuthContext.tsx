@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return saved ? JSON.parse(saved) : null;
   });
 
-  const login = (name: string, email?: string) => {
+  const login = (name: string, _email?: string) => {
     const newUser = {
       id: 'u' + Date.now(),
       name: name,
