@@ -57,7 +57,7 @@ export const Messenger = () => {
           return prev;
         } else {
           const newChat = {
-            id: Date.now(),
+            id: Math.floor(Math.random() * 1000000) + 100,
             name: newUser.name,
             avatar: newUser.avatar || `https://ui-avatars.com/api/?name=${newUser.name}&background=0ea5e9&color=fff`,
             lastMessage: '',
@@ -158,7 +158,7 @@ export const Messenger = () => {
                 if (groupName) {
                   const members = prompt("Guruhga qaysi do'stlaringizni qo'shasiz? (Ismlarini vergul bilan ajratib yozing)");
                   const newGroup = {
-                    id: Date.now(),
+                    id: Math.floor(Math.random() * 1000000) + 100,
                     name: groupName,
                     avatar: `https://ui-avatars.com/api/?name=${groupName}&background=047857&color=fff`,
                     lastMessage: members ? `${members} guruhga qo'shildi` : 'Yangi guruh ochildi',
@@ -222,55 +222,40 @@ export const Messenger = () => {
                 </div>
               </div>
 
-              {/* Messages Area */}
-              <div className="flex-1 relative flex flex-col overflow-hidden bg-sand/30">
-                {/* Mountain Background */}
-                <div 
-                  className="absolute inset-0 pointer-events-none bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: 'url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop")',
-                    opacity: 0.15
-                  }}
-                />
-                
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 relative z-10">
-                  {messages.length === 0 && (
-                    <div className="flex justify-center mt-10">
-                      <div className="bg-emerald-900/10 backdrop-blur-sm text-emerald-900/60 text-sm py-2 px-4 rounded-full font-medium">
-                        {t('messenger.noMessages')}
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                {messages.length === 0 && (
+                  <div className="text-center text-emerald-900/40 text-sm mt-10">{t('messenger.noMessages')}</div>
+                )}
+                {messages.map((msg) => {
+                  const isMe = user?.name === msg.sender_name;
+                  const timeStr = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                  
+                  return (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      key={msg.id} 
+                      className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
+                    >
+                      {!isMe && (
+                        <img src={msg.sender_avatar} alt={msg.sender_name} className="w-6 h-6 rounded-full mr-2 mt-auto mb-1" />
+                      )}
+                      <div className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm ${
+                        isMe 
+                          ? 'bg-emerald-900 text-white rounded-br-sm' 
+                          : 'bg-white text-emerald-900 border border-emerald-900/10 rounded-bl-sm shadow-sm'
+                      }`}>
+                        {!isMe && <span className="text-[10px] font-bold block mb-1 opacity-60">{msg.sender_name}</span>}
+                        <p>{msg.text_content}</p>
+                        <span className={`text-[10px] mt-1 block text-right ${isMe ? 'text-emerald-100/70' : 'text-emerald-900/40'}`}>
+                          {timeStr}
+                        </span>
                       </div>
-                    </div>
-                  )}
-                  {messages.map((msg) => {
-                    const isMe = user?.name === msg.sender_name;
-                    const timeStr = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    
-                    return (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        key={msg.id} 
-                        className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
-                      >
-                        {!isMe && (
-                          <img src={msg.sender_avatar} alt={msg.sender_name} className="w-8 h-8 rounded-full mr-2 mt-auto mb-1 shadow-sm border border-white" />
-                        )}
-                        <div className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm shadow-sm ${
-                          isMe 
-                            ? 'bg-emerald-600 text-white rounded-br-sm' 
-                            : 'bg-white text-emerald-900 rounded-bl-sm border border-emerald-900/5'
-                        }`}>
-                          {!isMe && <span className="text-[11px] font-bold block mb-1 text-emerald-600">{msg.sender_name}</span>}
-                          <p className="leading-relaxed">{msg.text_content}</p>
-                          <span className={`text-[10px] mt-1 block text-right ${isMe ? 'text-emerald-100/70' : 'text-emerald-900/40'}`}>
-                            {timeStr}
-                          </span>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                  <div ref={messagesEndRef} />
-                </div>
+                    </motion.div>
+                  );
+                })}
+                <div ref={messagesEndRef} />
               </div>
 
               {/* Input Area */}
