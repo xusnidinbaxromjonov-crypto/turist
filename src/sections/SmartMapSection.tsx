@@ -140,12 +140,11 @@ export const SmartMapSection = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="absolute inset-0 origin-center cursor-grab active:cursor-grabbing"
             >
-              {/* Map Background Mockup */}
+              {/* Map Background */}
               <div 
                 className="absolute inset-0 bg-cover bg-center pointer-events-none"
                 style={{ 
-                  backgroundImage: 'url("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2000&auto=format&fit=crop")',
-                  filter: 'saturate(0.8) brightness(1.1)' 
+                  backgroundImage: 'url("/uzbekistan-map.png")' 
                 }}
               />
               

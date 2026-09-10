@@ -251,21 +251,26 @@ export const TripPlannerSection = () => {
                   <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:ml-10 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-emerald-100">
                     
                     {[
-                      { time: "10:00", name: t('planner.route1.name'), desc: t('planner.route1.desc'), icon: <MapPin size={16} /> },
-                      { time: "11:30", name: t('planner.route2.name'), desc: t('planner.route2.desc'), icon: <Compass size={16} /> },
-                      { time: "13:30", name: t('planner.route3.name'), desc: t('planner.route3.desc'), icon: <Wallet size={16} /> },
-                      { time: "15:00", name: t('planner.route4.name'), desc: t('planner.route4.desc'), icon: <Navigation size={16} /> }
+                      { time: "10:00", name: t('planner.route1.name'), desc: t('planner.route1.desc'), icon: <MapPin size={16} />, img: "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?auto=format&fit=crop&w=400&q=80" },
+                      { time: "11:30", name: t('planner.route2.name'), desc: t('planner.route2.desc'), icon: <Compass size={16} />, img: "https://images.unsplash.com/photo-1580226343588-4660bb6dc7d4?auto=format&fit=crop&w=400&q=80" },
+                      { time: "13:30", name: t('planner.route3.name'), desc: t('planner.route3.desc'), icon: <Wallet size={16} />, img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=400&q=80" },
+                      { time: "15:00", name: t('planner.route4.name'), desc: t('planner.route4.desc'), icon: <Navigation size={16} />, img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=400&q=80" }
                     ].map((item, idx) => (
-                      <div key={idx} className="relative flex items-start gap-6">
-                        <div className="absolute -left-11 bg-white p-1 rounded-full text-emerald-600 border border-emerald-100 z-10 mt-1">
+                      <div key={idx} className="relative flex items-start gap-6 group">
+                        <div className="absolute -left-11 bg-white p-1 rounded-full text-emerald-600 border border-emerald-100 z-10 mt-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
                           {item.icon}
                         </div>
-                        <div className="bg-sand p-5 rounded-2xl border border-emerald-900/5 flex-1">
-                          <div className="flex justify-between items-center mb-2">
-                            <h4 className="font-bold text-lg text-emerald-900">{item.name}</h4>
-                            <span className="text-sm font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">{item.time}</span>
+                        <div className="bg-sand p-3 sm:p-4 rounded-2xl border border-emerald-900/5 flex-1 flex flex-col sm:flex-row gap-4 sm:items-center hover:shadow-lg transition-shadow duration-300">
+                          <div className="w-full sm:w-28 h-40 sm:h-24 shrink-0 rounded-xl overflow-hidden shadow-sm">
+                            <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                           </div>
-                          <p className="text-sm text-emerald-800/70">{item.desc}</p>
+                          <div className="flex-1">
+                            <div className="flex justify-between items-start sm:items-center mb-1">
+                              <h4 className="font-bold text-lg text-emerald-900">{item.name}</h4>
+                              <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded-md">{item.time}</span>
+                            </div>
+                            <p className="text-sm text-emerald-800/70">{item.desc}</p>
+                          </div>
                         </div>
                       </div>
                     ))}
