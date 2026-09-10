@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const INITIAL_CHATS = [
   {
@@ -29,6 +29,7 @@ export const Messenger = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const [chats, setChats] = useState<any[]>(INITIAL_CHATS);
   const [activeChat, setActiveChat] = useState<number | null>(null);
   const [message, setMessage] = useState('');
@@ -39,27 +40,30 @@ export const Messenger = () => {
   useEffect(() => {
     if (location.state?.newChatUser) {
       const newUser = location.state.newChatUser;
-      const existingChat = chats.find(c => c.name === newUser.name);
       
-      if (existingChat) {
-        setActiveChat(existingChat.id);
-      } else {
-        const newChat = {
-          id: Date.now(),
-          name: newUser.name,
-          avatar: newUser.avatar || `https://ui-avatars.com/api/?name=${newUser.name}&background=0ea5e9&color=fff`,
-          lastMessage: '',
-          time: 'Hozir',
-          type: 'personal'
-        };
-        setChats(prev => [newChat, ...prev]);
-        setActiveChat(newChat.id);
-      }
+      setChats(prev => {
+        const existingChat = prev.find(c => c.name === newUser.name);
+        if (existingChat) {
+          setTimeout(() => setActiveChat(existingChat.id), 0);
+          return prev;
+        } else {
+          const newChat = {
+            id: Date.now(),
+            name: newUser.name,
+            avatar: newUser.avatar || `https://ui-avatars.com/api/?name=${newUser.name}&background=0ea5e9&color=fff`,
+            lastMessage: '',
+            time: 'Hozir',
+            type: 'personal'
+          };
+          setTimeout(() => setActiveChat(newChat.id), 0);
+          return [newChat, ...prev];
+        }
+      });
       
       // Clear state so it doesn't run again on refresh
-      window.history.replaceState({}, document.title);
+      navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location.state, chats]);
+  }, [location.state, navigate]);
 
   // Fetch initial messages and subscribe
   useEffect(() => {
@@ -143,16 +147,17 @@ export const Messenger = () => {
               onClick={() => {
                 const groupName = prompt("Guruh nomini kiriting:");
                 if (groupName) {
+                  const members = prompt("Guruhga qaysi do'stlaringizni qo'shasiz? (Ismlarini vergul bilan ajratib yozing)");
                   const newGroup = {
                     id: Date.now(),
                     name: groupName,
                     avatar: `https://ui-avatars.com/api/?name=${groupName}&background=047857&color=fff`,
-                    lastMessage: 'Yangi guruh ochildi',
+                    lastMessage: members ? `${members} guruhga qo'shildi` : 'Yangi guruh ochildi',
                     time: 'Hozir',
                     type: 'group'
                   };
                   setChats(prev => [newGroup, ...prev]);
-                  setActiveChat(newGroup.id);
+                  setTimeout(() => setActiveChat(newGroup.id), 0);
                 }
               }}
               className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center hover:bg-emerald-100 transition-colors"
