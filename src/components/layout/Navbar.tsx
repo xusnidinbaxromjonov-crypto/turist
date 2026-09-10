@@ -48,11 +48,10 @@ export const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-white group">
           <div className="w-10 h-10 rounded-xl overflow-hidden bg-white shadow-lg shadow-emerald-900/20 group-hover:scale-105 transition-transform flex items-center justify-center p-1">
-            <img src="/logo.png" alt="Farg'ona Tourism Logo" className="w-full h-full object-contain mix-blend-multiply" />
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain mix-blend-multiply" />
           </div>
           <div>
-            <h1 className="text-lg font-heading font-bold leading-none tracking-wider m-0">FARG'ONA</h1>
-            <span className="text-[10px] tracking-widest uppercase opacity-80">Tourism</span>
+            <h1 className="text-sm md:text-base font-heading font-bold leading-none tracking-wider m-0 uppercase">COOPERATE WITH US</h1>
           </div>
         </Link>
 

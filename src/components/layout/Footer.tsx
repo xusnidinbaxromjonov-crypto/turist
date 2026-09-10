@@ -12,11 +12,10 @@ export const Footer = () => {
           <div className="col-span-1 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 text-emerald-900 mb-4">
               <div className="w-10 h-10 rounded-xl overflow-hidden bg-white shadow-lg shadow-emerald-900/10 flex items-center justify-center p-1">
-                <img src="/logo.png" alt="Farg'ona Tourism Logo" className="w-full h-full object-contain mix-blend-multiply" />
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain mix-blend-multiply" />
               </div>
               <div>
-                <h2 className="text-xl font-heading font-bold leading-none tracking-wider text-emerald-900 m-0">FARG'ONA</h2>
-                <span className="text-[10px] tracking-widest uppercase text-emerald-700">Tourism</span>
+                <h2 className="text-base font-heading font-bold leading-none tracking-wider text-emerald-900 m-0 uppercase">COOPERATE WITH US</h2>
               </div>
             </Link>
             <p className="text-emerald-800/80 text-sm mb-6 font-medium italic">
