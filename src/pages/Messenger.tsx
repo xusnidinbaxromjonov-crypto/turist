@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { Send, Users, ArrowLeft, Image as ImageIcon, MessageCircle } from 'lucide-react';
+import { Send, Users, ArrowLeft, Image as ImageIcon, MessageCircle, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
-const CHATS = [
+const INITIAL_CHATS = [
   {
     id: 1,
     name: 'Sardor',
@@ -27,10 +28,38 @@ const CHATS = [
 export const Messenger = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
+  const location = useLocation();
+  const [chats, setChats] = useState<any[]>(INITIAL_CHATS);
   const [activeChat, setActiveChat] = useState<number | null>(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Check if we navigated here to message someone new
+  useEffect(() => {
+    if (location.state?.newChatUser) {
+      const newUser = location.state.newChatUser;
+      const existingChat = chats.find(c => c.name === newUser.name);
+      
+      if (existingChat) {
+        setActiveChat(existingChat.id);
+      } else {
+        const newChat = {
+          id: Date.now(),
+          name: newUser.name,
+          avatar: newUser.avatar || `https://ui-avatars.com/api/?name=${newUser.name}&background=0ea5e9&color=fff`,
+          lastMessage: '',
+          time: 'Hozir',
+          type: 'personal'
+        };
+        setChats(prev => [newChat, ...prev]);
+        setActiveChat(newChat.id);
+      }
+      
+      // Clear state so it doesn't run again on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state, chats]);
 
   // Fetch initial messages and subscribe
   useEffect(() => {
@@ -108,12 +137,33 @@ export const Messenger = () => {
         
         {/* Chat List (Sidebar) */}
         <div className={`w-full md:w-80 bg-white md:rounded-l-2xl border-r border-emerald-900/10 flex flex-col ${activeChat ? 'hidden md:flex' : 'flex'}`}>
-          <div className="p-4 border-b border-emerald-900/5">
+          <div className="p-4 border-b border-emerald-900/5 flex justify-between items-center">
             <h2 className="text-xl font-bold font-heading text-emerald-900">{t('messenger.title')}</h2>
+            <button 
+              onClick={() => {
+                const groupName = prompt("Guruh nomini kiriting:");
+                if (groupName) {
+                  const newGroup = {
+                    id: Date.now(),
+                    name: groupName,
+                    avatar: `https://ui-avatars.com/api/?name=${groupName}&background=047857&color=fff`,
+                    lastMessage: 'Yangi guruh ochildi',
+                    time: 'Hozir',
+                    type: 'group'
+                  };
+                  setChats(prev => [newGroup, ...prev]);
+                  setActiveChat(newGroup.id);
+                }
+              }}
+              className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center hover:bg-emerald-100 transition-colors"
+              title="Yangi guruh ochish"
+            >
+              <Plus size={16} />
+            </button>
           </div>
           
           <div className="flex-1 overflow-y-auto">
-            {CHATS.map(chat => (
+            {chats.map(chat => (
               <div 
                 key={chat.id}
                 onClick={() => setActiveChat(chat.id)}
@@ -151,9 +201,9 @@ export const Messenger = () => {
                 >
                   <ArrowLeft size={20} />
                 </button>
-                <img src={CHATS.find(c => c.id === activeChat)?.avatar} className="w-10 h-10 rounded-full mr-3" />
+                <img src={chats.find(c => c.id === activeChat)?.avatar} className="w-10 h-10 rounded-full mr-3" />
                 <div>
-                  <h3 className="font-bold text-emerald-900 text-sm">{CHATS.find(c => c.id === activeChat)?.name}</h3>
+                  <h3 className="font-bold text-emerald-900 text-sm">{chats.find(c => c.id === activeChat)?.name}</h3>
                   <p className="text-xs text-emerald-800/50">{t('messenger.online')}</p>
                 </div>
               </div>

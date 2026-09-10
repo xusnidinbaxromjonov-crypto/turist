@@ -106,8 +106,8 @@ export const Companions = () => {
     }
   };
 
-  const handleMessage = () => {
-    navigate('/messenger');
+  const handleMessage = (postUser: any) => {
+    navigate('/messenger', { state: { newChatUser: postUser } });
   };
 
   return (
@@ -163,7 +163,7 @@ export const Companions = () => {
 
                 <div className="flex justify-end gap-3 border-t border-emerald-50 pt-4">
                   <button 
-                    onClick={handleMessage}
+                    onClick={() => handleMessage(post.user)}
                     className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium hover:bg-emerald-100 transition-colors"
                   >
                     <MessageCircle size={16} />
