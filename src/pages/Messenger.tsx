@@ -31,13 +31,13 @@ export const Messenger = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [chats, setChats] = useState<any[]>(() => {
-    const saved = localStorage.getItem('turist_chats_v2');
+    const saved = localStorage.getItem('turist_chats');
     if (saved) return JSON.parse(saved);
     return INITIAL_CHATS;
   });
 
   useEffect(() => {
-    localStorage.setItem('turist_chats_v2', JSON.stringify(chats));
+    localStorage.setItem('turist_chats', JSON.stringify(chats));
   }, [chats]);
 
   const [activeChat, setActiveChat] = useState<number | null>(null);
@@ -57,7 +57,7 @@ export const Messenger = () => {
           return prev;
         } else {
           const newChat = {
-            id: Math.floor(Math.random() * 1000000) + 100,
+            id: Date.now(),
             name: newUser.name,
             avatar: newUser.avatar || `https://ui-avatars.com/api/?name=${newUser.name}&background=0ea5e9&color=fff`,
             lastMessage: '',
@@ -145,20 +145,20 @@ export const Messenger = () => {
   };
 
   return (
-    <div className="pt-20 h-screen bg-sand flex flex-col">
-      <div className="flex-1 flex overflow-hidden container mx-auto max-w-6xl md:py-6 md:px-4">
+    <div className="pt-16 h-screen bg-white flex flex-col">
+      <div className="flex-1 flex overflow-hidden w-full max-w-[1600px] mx-auto shadow-sm">
         
         {/* Chat List (Sidebar) */}
-        <div className={`w-full md:w-80 bg-white md:rounded-l-2xl border-r border-emerald-900/10 flex flex-col ${activeChat ? 'hidden md:flex' : 'flex'}`}>
-          <div className="p-4 border-b border-emerald-900/5 flex justify-between items-center">
-            <h2 className="text-xl font-bold font-heading text-emerald-900">{t('messenger.title')}</h2>
+        <div className={`w-full md:w-[380px] bg-white border-r border-gray-200 flex flex-col shrink-0 ${activeChat ? 'hidden md:flex' : 'flex'}`}>
+          <div className="p-3 border-b border-gray-200 flex justify-between items-center bg-white h-14 shrink-0">
+            <h2 className="text-lg font-bold text-gray-800 ml-2">{t('messenger.title')}</h2>
             <button 
               onClick={() => {
                 const groupName = prompt("Guruh nomini kiriting:");
                 if (groupName) {
                   const members = prompt("Guruhga qaysi do'stlaringizni qo'shasiz? (Ismlarini vergul bilan ajratib yozing)");
                   const newGroup = {
-                    id: Math.floor(Math.random() * 1000000) + 100,
+                    id: Date.now(),
                     name: groupName,
                     avatar: `https://ui-avatars.com/api/?name=${groupName}&background=047857&color=fff`,
                     lastMessage: members ? `${members} guruhga qo'shildi` : 'Yangi guruh ochildi',
@@ -169,63 +169,68 @@ export const Messenger = () => {
                   setTimeout(() => setActiveChat(newGroup.id), 0);
                 }
               }}
-              className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center hover:bg-emerald-100 transition-colors"
+              className="w-8 h-8 rounded-full text-emerald-600 flex items-center justify-center hover:bg-emerald-50 transition-colors"
               title="Yangi guruh ochish"
             >
-              <Plus size={16} />
+              <Plus size={18} />
             </button>
           </div>
           
           <div className="flex-1 overflow-y-auto">
-            {chats.map(chat => (
-              <div 
-                key={chat.id}
-                onClick={() => setActiveChat(chat.id)}
-                className={`flex items-center gap-3 p-4 cursor-pointer hover:bg-emerald-50 transition-colors border-b border-emerald-900/5 ${activeChat === chat.id ? 'bg-emerald-50' : ''}`}
-              >
-                <div className="relative">
-                  <img src={chat.avatar} alt={chat.name} className="w-12 h-12 rounded-full" />
-                  {chat.type === 'group' && (
-                    <div className="absolute -bottom-1 -right-1 bg-emerald-600 text-white w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
-                      <Users size={10} />
-                    </div>
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-center mb-1">
-                    <h4 className="font-bold text-emerald-900 text-sm truncate">{chat.name}</h4>
-                    <span className="text-xs text-emerald-800/50">{chat.time}</span>
+            {chats.map(chat => {
+              const isActive = activeChat === chat.id;
+              return (
+                <div 
+                  key={chat.id}
+                  onClick={() => setActiveChat(chat.id)}
+                  className={`flex items-center gap-3 p-3 mx-2 my-1 rounded-xl cursor-pointer transition-colors ${isActive ? 'bg-emerald-600 text-white' : 'hover:bg-gray-100 text-gray-900'}`}
+                >
+                  <div className="relative shrink-0">
+                    <img src={chat.avatar} alt={chat.name} className="w-12 h-12 rounded-full object-cover" />
+                    {chat.type === 'group' && (
+                      <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center border-2 border-white ${isActive ? 'bg-white text-emerald-600' : 'bg-emerald-600 text-white'}`}>
+                        <Users size={10} />
+                      </div>
+                    )}
                   </div>
-                  <p className="text-xs text-emerald-800/70 truncate">{chat.lastMessage}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex justify-between items-baseline mb-1">
+                      <h4 className={`font-bold text-sm truncate ${isActive ? 'text-white' : 'text-gray-900'}`}>{chat.name}</h4>
+                      <span className={`text-xs ${isActive ? 'text-white/80' : 'text-gray-500'}`}>{chat.time}</span>
+                    </div>
+                    <p className={`text-sm truncate ${isActive ? 'text-white/80' : 'text-gray-500'}`}>{chat.lastMessage}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* Chat Area */}
-        <div className={`flex-1 bg-sand md:bg-sand/30 md:rounded-r-2xl flex flex-col relative ${!activeChat ? 'hidden md:flex' : 'flex'}`}>
+        <div className={`flex-1 bg-[#d8e3da] flex flex-col relative ${!activeChat ? 'hidden md:flex' : 'flex'}`}>
           {activeChat ? (
             <>
               {/* Chat Header */}
-              <div className="h-16 bg-white border-b border-emerald-900/10 flex items-center px-4 md:rounded-tr-2xl shrink-0 z-10">
+              <div className="h-14 bg-white border-b border-gray-200 flex items-center px-4 shrink-0 z-10 shadow-sm">
                 <button 
                   onClick={() => setActiveChat(null)}
-                  className="md:hidden mr-3 text-emerald-900/60"
+                  className="md:hidden mr-3 text-gray-500 hover:text-gray-800"
                 >
                   <ArrowLeft size={20} />
                 </button>
-                <img src={chats.find(c => c.id === activeChat)?.avatar} className="w-10 h-10 rounded-full mr-3" />
+                <img src={chats.find(c => c.id === activeChat)?.avatar} className="w-10 h-10 rounded-full mr-3 object-cover" />
                 <div>
-                  <h3 className="font-bold text-emerald-900 text-sm">{chats.find(c => c.id === activeChat)?.name}</h3>
-                  <p className="text-xs text-emerald-800/50">{t('messenger.online')}</p>
+                  <h3 className="font-bold text-gray-900 text-sm">{chats.find(c => c.id === activeChat)?.name}</h3>
+                  <p className="text-xs text-emerald-600 font-medium">{t('messenger.online')}</p>
                 </div>
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
                 {messages.length === 0 && (
-                  <div className="text-center text-emerald-900/40 text-sm mt-10">{t('messenger.noMessages')}</div>
+                  <div className="text-center w-full flex justify-center mt-10">
+                    <span className="text-gray-500 text-sm bg-white/50 px-4 py-1 rounded-full shadow-sm">{t('messenger.noMessages')}</span>
+                  </div>
                 )}
                 {messages.map((msg) => {
                   const isMe = user?.name === msg.sender_name;
@@ -233,22 +238,22 @@ export const Messenger = () => {
                   
                   return (
                     <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
                       key={msg.id} 
                       className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
                     >
                       {!isMe && (
-                        <img src={msg.sender_avatar} alt={msg.sender_name} className="w-6 h-6 rounded-full mr-2 mt-auto mb-1" />
+                        <img src={msg.sender_avatar} alt={msg.sender_name} className="w-8 h-8 rounded-full mr-2 mt-auto mb-1 object-cover shrink-0" />
                       )}
-                      <div className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm ${
+                      <div className={`max-w-[75%] md:max-w-[60%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed shadow-sm relative min-w-[80px] ${
                         isMe 
-                          ? 'bg-emerald-900 text-white rounded-br-sm' 
-                          : 'bg-white text-emerald-900 border border-emerald-900/10 rounded-bl-sm shadow-sm'
+                          ? 'bg-[#effdde] text-gray-900 rounded-br-sm' 
+                          : 'bg-white text-gray-900 rounded-bl-sm'
                       }`}>
-                        {!isMe && <span className="text-[10px] font-bold block mb-1 opacity-60">{msg.sender_name}</span>}
-                        <p>{msg.text_content}</p>
-                        <span className={`text-[10px] mt-1 block text-right ${isMe ? 'text-emerald-100/70' : 'text-emerald-900/40'}`}>
+                        {!isMe && <span className="text-[13px] font-bold block mb-0.5 text-emerald-600">{msg.sender_name}</span>}
+                        <p className="pb-3 pr-4">{msg.text_content}</p>
+                        <span className={`text-[10px] absolute bottom-1.5 right-2 ${isMe ? 'text-green-700/70' : 'text-gray-400'}`}>
                           {timeStr}
                         </span>
                       </div>
@@ -259,32 +264,34 @@ export const Messenger = () => {
               </div>
 
               {/* Input Area */}
-              <div className="p-4 bg-white md:rounded-br-2xl border-t border-emerald-900/10">
-                <form onSubmit={handleSend} className="flex gap-2 items-center">
-                  <button type="button" className="text-emerald-900/40 hover:text-emerald-900 transition-colors p-2">
-                    <ImageIcon size={20} />
+              <div className="bg-white p-2 md:p-3 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
+                <form onSubmit={handleSend} className="flex gap-2 items-center max-w-4xl mx-auto">
+                  <button type="button" className="text-gray-400 hover:text-emerald-600 transition-colors p-2 shrink-0">
+                    <ImageIcon size={24} />
                   </button>
                   <input 
                     type="text" 
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t('messenger.typeMessage', "Xabar yozing...")}
-                    className="flex-1 bg-sand/50 border border-emerald-900/10 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-900/20 text-sm"
+                    className="flex-1 bg-[#f4f4f5] rounded-full px-5 py-3 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-emerald-500 transition-all text-[15px]"
                   />
                   <button 
                     type="submit"
                     disabled={!message.trim()}
-                    className="bg-emerald-900 text-white w-10 h-10 rounded-xl flex items-center justify-center disabled:opacity-50 transition-opacity"
+                    className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-all ${message.trim() ? 'bg-emerald-600 text-white shadow-md' : 'bg-transparent text-gray-400'}`}
                   >
-                    <Send size={16} />
+                    <Send size={20} className={message.trim() ? 'ml-1' : ''} />
                   </button>
                 </form>
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-emerald-900/30">
-              <MessageCircle size={64} className="mb-4 opacity-50" />
-              <p className="font-medium">{t('messenger.selectChat')}</p>
+            <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
+              <div className="bg-white/50 p-6 rounded-full mb-4 shadow-sm">
+                <MessageCircle size={48} className="opacity-50" />
+              </div>
+              <p className="font-medium bg-white/50 px-4 py-1 rounded-full shadow-sm">{t('messenger.selectChat')}</p>
             </div>
           )}
         </div>
