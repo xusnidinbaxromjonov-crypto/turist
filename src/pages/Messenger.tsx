@@ -31,13 +31,13 @@ export const Messenger = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [chats, setChats] = useState<any[]>(() => {
-    const saved = localStorage.getItem('turist_chats');
+    const saved = localStorage.getItem('turist_chats_v2');
     if (saved) return JSON.parse(saved);
     return INITIAL_CHATS;
   });
 
   useEffect(() => {
-    localStorage.setItem('turist_chats', JSON.stringify(chats));
+    localStorage.setItem('turist_chats_v2', JSON.stringify(chats));
   }, [chats]);
 
   const [activeChat, setActiveChat] = useState<number | null>(null);
