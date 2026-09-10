@@ -144,7 +144,7 @@ export const SmartMapSection = () => {
               <div 
                 className="absolute inset-0 bg-cover bg-center pointer-events-none"
                 style={{ 
-                  backgroundImage: 'url("/uzbekistan-map.png")' 
+                  backgroundImage: 'url("https://static-maps.yandex.ru/1.x/?ll=69.5,40.5&z=7&l=map&size=650,450&lang=uz_UZ")' 
                 }}
               />
               
