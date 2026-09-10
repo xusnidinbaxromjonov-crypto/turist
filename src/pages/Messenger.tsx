@@ -30,7 +30,16 @@ export const Messenger = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const [chats, setChats] = useState<any[]>(INITIAL_CHATS);
+  const [chats, setChats] = useState<any[]>(() => {
+    const saved = localStorage.getItem('turist_chats');
+    if (saved) return JSON.parse(saved);
+    return INITIAL_CHATS;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('turist_chats', JSON.stringify(chats));
+  }, [chats]);
+
   const [activeChat, setActiveChat] = useState<number | null>(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
